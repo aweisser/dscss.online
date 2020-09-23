@@ -1,0 +1,23 @@
+/* ======= BETA Corner ======= */
+body:after{
+  content: "alpha";
+  position: fixed;
+  z-index: 9999;
+  width: 80px;
+  height: 25px;
+  background: #074f66;
+  top: 7px;
+  left: -20px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  line-height: 27px;
+  -ms-transform:rotate(-45deg);
+  -webkit-transform:rotate(-45deg);
+  transform:rotate(-45deg);
+  opacity: 0.8;
+}
