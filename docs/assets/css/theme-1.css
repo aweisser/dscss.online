@@ -106,7 +106,7 @@ pre code {
 
 .header.navbar-fixed-top {
   background: #fff;
-  z-index: 9999;
+  z-index: 99999;
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
