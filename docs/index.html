@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Plugins CSS -->    
     <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <!-- Common CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/common.css">
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
     <!-- GitHub Button -->
@@ -207,7 +209,7 @@
                         </p>
                     </div><!--//content-->
                 </div><!--//item-->
-            </div><!--//row-->      
+            </div><!--//row-->          
             <p class="text-center">
                 Next meetup: Tuesday 9 pm (CEST)
             </p>
@@ -236,7 +238,38 @@
     <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
     <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script> 
     <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
-    <script type="text/javascript" src="assets/js/main.js"></script>  
+    <script type="text/javascript" src="assets/js/main.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+
+    <!-- include only the Firebase features as you need -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDIk_we1R5K-MbbZCwHSwH61PLix3pmDr4",
+            authDomain: "dscssonline-19405.firebaseapp.com",
+            databaseURL: "https://dscssonline-19405.firebaseio.com",
+            projectId: "dscssonline-19405",
+            storageBucket: "dscssonline-19405.appspot.com",
+            messagingSenderId: "574484128348",
+            appId: "1:574484128348:web:dcf73dbf3354208c84fc99"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Iterate data
+        var db = firebase.firestore();
+        var discussionsRef = db.collection("discussions");
+        discussionsRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(`${doc.id} => ${doc.data().title}`);
+            });
+        });
+    </script>
     
         
 </body>

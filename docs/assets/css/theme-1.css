@@ -117,6 +117,10 @@ pre code {
 }
 
 .header .logo {
+  padding-left: 20px;
+}
+
+.header .logo-title {
   margin: 0;
   font-size: 26px;
   padding-top: 10px;
@@ -696,7 +700,7 @@ pre code {
     font-size: 7vw;
   }  
   .promo .meta {
-    margin-top: 60px;
+    margin-top: 50px;
   }
   .promo .meta li {
     float: none;
