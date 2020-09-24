@@ -35,15 +35,6 @@ body:after{
   margin-bottom: 30px;
 }
 
-.discussions a {
-  color: #fff;
-}
-
-.discussions a:hover {
-  color: #042a36;
-  text-decoration: none;
-}
-
 .discussions .discussions-list li {
   margin-bottom: 10px;
   color: #074f66;
@@ -139,6 +130,10 @@ body:after{
   color: #888;
 }
 
+.search-result-item a.btn-cta-secondary, .btn-cta-secondary {
+  color: #074f66;
+}
+
 .search-result-item+.search-result-item {
   margin-top: 20px;
 }
@@ -163,4 +158,44 @@ body:after{
   .search-result-item-heading {
       margin: 0;
   }
+}
+
+.atc-link {
+  display: block;
+  line-height: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #333;
+  font-weight: 600;
+  padding: 14px 10px 14px 55px;
+  margin: -2px 0px;
+}
+
+.atc-apple {
+  background: url(../images/apple.svg) 16px 50% no-repeat;
+}
+
+.atc-google {
+  background: url(../images/google.svg) 18px 50% no-repeat;
+  background-size: 22px 100%;
+}
+
+.atc-office365 {
+  background: url(../images/office-365.svg) 18px 50% no-repeat;
+  background-size: 22px 100%;
+}
+
+.atc-outlook {
+  background: url(../images/outlook.svg) 13px 50% no-repeat;
+  background-size: 37px 100%;
+}
+
+.atc-outlookCom {
+  background: url(../images/outlookCom.svg) 13px 50% no-repeat;
+  background-size: 37px 100%;
+}
+
+.atc-yahoo {
+  background: url(../images/yahoo.svg) 14px 50% no-repeat;
 }
