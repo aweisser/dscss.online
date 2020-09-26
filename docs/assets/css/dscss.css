@@ -199,3 +199,9 @@ body:after{
 .atc-yahoo {
   background: url(../images/yahoo.svg) 14px 50% no-repeat;
 }
+
+.atc-collab-link {
+  display: inline;
+  text-decoration: none;
+  box-sizing: border-box;
+}
