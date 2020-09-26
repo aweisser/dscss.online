@@ -208,18 +208,10 @@
                         </p>
                     </div><!--//content-->
                 </div><!--//item-->
-            </div><!--//row-->          
-            <p class="text-center">
-                Next meetup: Tuesday 9 pm (CEST)
-            </p>
-            <p class="atc-collaboration" style="margin:0px 0px 10px 0px;text-align:center;font-size:0px;">
-                <a href="https://www.addevent.com/event/yG5210015+apple" title="Apple" target="_blank"><img src="assets/images/apple.svg" alt="Apple" style="width:23px;;margin-left:11px;margin-right:11px;" /></a>
-                <a href="https://www.addevent.com/event/yG5210015+apple" title="Google" target="_blank"><img src="assets/images/google.svg" alt="Google" style="width:25px;margin-left:10px;margin-right:10px;" /></a>
-                <a href="https://www.addevent.com/event/yG5210015+apple" title="Office 365" target="_blank"><img src="assets/images/office-365.svg" alt="Office 365" style="width:19px;;margin-left:13px;margin-right:13px;" /></a>
-                <a href="https://www.addevent.com/event/yG5210015+apple" title="Outlook" target="_blank"><img src="assets/images/outlook.svg" alt="Outlook" style="width:31px;;margin-left:6px;margin-right:6px;" /></a>
-                <a href="https://www.addevent.com/event/yG5210015+apple" title="Outlook.com" target="_blank"><img src="assets/images/outlookCom.svg" alt="Outlook.com" style="width:31px;;margin-left:6px;margin-right:6px;" /></a>
-                <a href="https://www.addevent.com/event/yG5210015+apple" title="Yahoo" target="_blank"><img src="assets/images/yahoo.svg" alt="Yahoo" style="width:25px;;margin-left:10px;margin-right:10px;" /></a>
-            </p>
+            </div><!--//row-->
+            <span id="contrib-next-meetup">     
+                <!-- set by JS -->
+            </span>
         </div><!--//container-->
     </section><!--//contribute-->
       
@@ -256,34 +248,39 @@
     <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
 
     <script>
-        var backendOn = false;
+        var now = new Date();
+        var todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var metaDscssnFound = false;
 
-        if(backendOn) {
-            var now = new Date();
-            var todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyDIk_we1R5K-MbbZCwHSwH61PLix3pmDr4",
-                authDomain: "dscssonline-19405.firebaseapp.com",
-                databaseURL: "https://dscssonline-19405.firebaseio.com",
-                projectId: "dscssonline-19405",
-                storageBucket: "dscssonline-19405.appspot.com",
-                messagingSenderId: "574484128348",
-                appId: "1:574484128348:web:dcf73dbf3354208c84fc99"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-            
-            // Load and display discussions
-            var db = firebase.firestore();
-            var discussionsRef = db.collection("discussions");
-            discussionsRef.where("start_time", ">", todayDate).orderBy("start_time").get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    addToDiscussions(doc.data());
-                });
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDIk_we1R5K-MbbZCwHSwH61PLix3pmDr4",
+            authDomain: "dscssonline-19405.firebaseapp.com",
+            databaseURL: "https://dscssonline-19405.firebaseio.com",
+            projectId: "dscssonline-19405",
+            storageBucket: "dscssonline-19405.appspot.com",
+            messagingSenderId: "574484128348",
+            appId: "1:574484128348:web:dcf73dbf3354208c84fc99"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Load and display discussions
+        var db = firebase.firestore();
+        var discussionsRef = db.collection("discussions");
+        discussionsRef.where("start_time", ">", todayDate).orderBy("start_time").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                var dscssn = doc.data();
+                if(discussionIsJoinable(dscssn)) {
+                    $('.search-results').append(discussionResultItem(dscssn));
+                }
+                // Grab the very next dscssOnline contribution meeting
+                if(!metaDscssnFound && dscssn.is_meta) {
+                    metaDscssnFound = true;
+                    $('#contrib-next-meetup').append(nextContribMeetingHtml(dscssn));
+                }
             });
-        }   
+        });
     </script>
         
 </body>
