@@ -180,7 +180,7 @@ pre code {
 
 .header .main-nav .nav .nav-item {
   font-weight: bold;
-  margin-right: 30px;
+  margin-right: 0px;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -214,8 +214,12 @@ pre code {
   background: none;
 }
 
+.header .main-nav .nav .nav-item.first {
+  margin-right: 30px;
+}
+
 .header .main-nav .nav .nav-item.last {
-  margin-right: 0;
+  margin-left: 30px;
 }
 
 /* ======= Promo Section ======= */
