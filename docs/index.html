@@ -274,7 +274,7 @@
                     $('.search-results').append(discussionResultItem(dscssn));
                 }
                 // Grab the very next dscssOnline contribution meeting
-                if(!metaDscssnFound && dscssn.is_meta) {
+                if(!metaDscssnFound && dscssn.is_meta && discussionEndIsInTheFuture(dscssn)) {
                     metaDscssnFound = true;
                     $('#contrib-next-meetup').append(nextContribMeetingHtml(dscssn));
                 }
