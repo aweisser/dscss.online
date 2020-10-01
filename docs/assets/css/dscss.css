@@ -199,3 +199,9 @@ body:after{
 .atc-yahoo {
   background: url(../images/yahoo.svg) 14px 50% no-repeat;
 }
+
+/* ======= Legal Section ======= */
+.legal {
+  padding: 140px 0;
+  background: #f5f5f5;
+}
