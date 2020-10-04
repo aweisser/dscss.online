@@ -271,9 +271,9 @@
         var discussionsRef = db.collection("discussions");
         discussionsRef.where("start_time", ">", todayDate).orderBy("start_time").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                var dscssn = doc.data();
+                var dscssn = doc.data();discussionResultItem
                 if(discussionIsJoinable(dscssn)) {
-                    $('.search-results').append(discussionResultItem(dscssn));
+                    $('.search-results').append(discussionResultItem(doc.id, dscssn));
                 }
                 // Grab the very next dscssOnline contribution meeting
                 if(!metaDscssnFound && dscssn.is_meta && discussionEndIsInTheFuture(dscssn)) {
