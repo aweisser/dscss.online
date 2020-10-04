@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>dscss.online - Impressum</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="aweisser">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+    <!-- FontAwesome JS-->
+	<script defer src="assets/fontawesome/js/all.min.js"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- DSCSS CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/dscss.css">
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+</head> 
+
+<body data-spy="scroll">
+	    
+    <!-- ******HEADER****** --> 
+    <header id="header" class="header">  
+        <div class="container">            
+            <h1 class="logo float-left">
+                <a href=".">
+                    <span class="logo-title">dscssOnline</span>
+                </a>
+            </h1><!--//logo-->              
+            <nav id="main-nav" class="main-nav navbar-expand-md float-right" role="navigation">
+                
+            </nav><!--//main-nav-->
+        </div>
+    </header><!--//header-->
+
+    <!-- ******DISCUSSIONS****** --> 
+    <section id="discussions" class="discussions section">
+        <h2 class="title text-center">Discussion</h2>
+        <!-- https://www.bootdey.com/snippets/view/Search-users-page-result#html -->
+        <div class="container">
+            <div class="row ng-scope">
+                <div class="search-results col-md-12">
+                </div>
+            </div>
+        </div>
+    </section><!--//discussions-->
+
+    <!-- ******FOOTER****** --> 
+    <footer class="footer">
+        <div class="container text-center">
+            <small class="copyright">Copyright © 2020 <a href="https://github.com/aweisser" target="_blank">Armin Weißer</a>. All rights reserved.</small>
+        </div><!--//container-->
+        <div class="container text-center">
+            <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+            <small class="copyright">Layout based on <a href="https://github.com/xriley/devAid-Theme" target="_blank">devAid-Theme</a>, designed with <i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a></small>
+        </div><!--//container-->
+        <div class="container text-center"><a href="impressum.html">Imprint</a></div>
+    </div>
+    </footer><!--//footer-->
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="assets/plugins/jquery-3.4.1.min.js"></script>   
+    <script type="text/javascript" src="assets/plugins/jquery.easing.1.3.js"></script>   
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.36/dayjs.min.js" integrity="sha512-nG86d7fodOg4f3fZF796WwIj6WwxdWI2DCXCarXZU05/UNHzC2CHQkD6dNdj6Ahaurrbed66rsvTt6r58RQ5WA==" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/atc.js"></script>
+    <script type="text/javascript" src="assets/js/dscss.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+
+    <!-- include only the Firebase features as you need -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var id = urlParams.get('id');
+
+        if(!id) {
+            window.location.replace("discussion/null"); // unknown route forces a 404
+        }
+        else {
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyDIk_we1R5K-MbbZCwHSwH61PLix3pmDr4",
+                authDomain: "dscssonline-19405.firebaseapp.com",
+                databaseURL: "https://dscssonline-19405.firebaseio.com",
+                projectId: "dscssonline-19405",
+                storageBucket: "dscssonline-19405.appspot.com",
+                messagingSenderId: "574484128348",
+                appId: "1:574484128348:web:dcf73dbf3354208c84fc99"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            
+            // Load and display discussions
+            var db = firebase.firestore();
+            var discussionsRef = db.collection("discussions");
+            var docRef = discussionsRef.doc(id);
+            docRef.get().then(function(doc) {
+                if (doc.exists) {
+                    $('.search-results').append(discussionResultItem(doc.id, doc.data()));
+                } else {
+                    window.location.replace(`discussion/${doc.id}`); // unknown route forces a 404
+                }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+                $('.search-results').append(`<p class="text-center">Error getting document!<p><p class="text-center">${error}</p>`);
+            });
+        }
+    </script>
+    
+</body>

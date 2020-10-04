@@ -2,13 +2,13 @@ function discussionIsJoinable(dscssn) {
     return discussionEndIsInTheFuture(dscssn);
 }
 
-function discussionResultItem(dscssn) {
+function discussionResultItem(id, dscssn) {
     return `
     <section class="search-result-item">
         <div class="search-result-item-body">
             <div class="row">
                 <div class="col-sm-9">
-                    <h3 class="search-result-item-heading"><a href="#">${dscssn.title}</a></h3>
+                    <h3 class="search-result-item-heading"><a href="discussion.html?id=${id}">${dscssn.title}</a></h3>
                     <p class="info">${dayjs.unix(dscssn.start_time.seconds).format('MMMM D, YYYY h:mm A')}, Duration: ${dscssn.duration_min} min</p>
                     <p class="description">${dscssn.description}</p>
                 </div>
