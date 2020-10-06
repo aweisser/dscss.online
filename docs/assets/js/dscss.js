@@ -3,14 +3,18 @@ function discussionIsJoinable(dscssn) {
 }
 
 function discussionResultItem(id, dscssn) {
+    // Use https://mdbootstrap.com/docs/jquery/components/buttons-social/ 
     return `
     <section class="search-result-item">
         <div class="search-result-item-body">
             <div class="row">
                 <div class="col-sm-9">
-                    <h3 class="search-result-item-heading"><a href="discussion.html?id=${id}">${dscssn.title}</a></h3>
-                    <p class="info">${dayjs.unix(dscssn.start_time.seconds).format('MMMM D, YYYY h:mm A')}, Duration: ${dscssn.duration_min} min</p>
-                    <p class="description">${dscssn.description}</p>
+                    <h3 class="search-result-item-heading">
+                        <a href="discussion.html?id=${id}">${dscssn.title}</a> 
+                        ${shareButton(id, dscssn)}
+                    </h3>
+                        <p class="info">${dayjs.unix(dscssn.start_time.seconds).format('MMMM D, YYYY h:mm A')}, Duration: ${dscssn.duration_min} min</p>
+                        <p class="description">${dscssn.description}</p>
                 </div>
                 <div class="col-sm-3">
                     <p>Language: ${dscssn.language}</p>
@@ -20,6 +24,50 @@ function discussionResultItem(id, dscssn) {
             </div>
         </div>
     </section>`;
+}
+
+function shareButton(id, dscssn) {
+    // https://www.websiteplanet.com/de/webtools/sharelink/
+    var detailPageLink = `${window.location.protocol}//${window.location.host}/discussion.html?id=${id}`;
+    var shareText = `I found an interesting discussion on dscssOnline!`;
+    return `
+    <div class="dropdown pull-right dropleft">
+    <a class="btn-share" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-share-square pull-right"></i>
+    </a>
+        <div class="dropdown-menu dropdown-share" aria-labelledby="dropdownMenuLink">
+            <!--Facebook-->
+            <a class="fb-ic mr-3" role="button" href="https://www.facebook.com/sharer/sharer.php?u=${detailPageLink}" target="_blank" title="Facebook"><i class="fab fa-lg fa-facebook-f"></i></a>
+
+            <!--Twitter-->
+            <a class="tw-ic mr-3" role="button" href="https://twitter.com/home?status=${detailPageLink} ${shareText}" target="_blank" title="Twitter"><i class="fab fa-lg fa-twitter"></i></a>
+
+            <!--Email-->
+            <a class="email-ic mr-3" role="button" href="mailto:?&subject=${shareText}&body=${shareText} ${detailPageLink}" title="Email"><i class="far fa-lg fa-envelope"></i></a>
+
+            <!--WhatsApp-->
+            <a class="whatsapp-ic mr-25" role="button" href="whatsapp://send?text=${shareText} ${detailPageLink}" title="WhatsApp"><i class="fab fa-lg fa-whatsapp"></i></a>
+
+            <!--Copy to clipboard-->
+            <input type="text" style="display:none" value="${detailPageLink}" id="clipboard_${id}">
+            <a class="copy-ic" role="button" onclick="copyToClipboard('clipboard_${id}')" title="Copy to clipboard"><i class="far fa-lg fa-copy"></i></a>
+        </div>
+    </div>`;
+}
+
+function copyToClipboard(id) {
+    /* Get the text field */
+    var copyText = document.getElementById(id);
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    alert("Copied " + copyText.value);
 }
 
 function discussionLink(dscssn) {

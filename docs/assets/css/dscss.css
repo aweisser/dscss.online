@@ -160,6 +160,29 @@ body:after{
   }
 }
 
+.pull-right {
+  float: right !important;
+}
+
+.btn-share {
+  margin: 5px;
+}
+
+.dropdown-share {
+  padding-left: 10px;
+  min-width: 12em;
+}
+
+.mr-25 {
+  margin-right: .75rem !important;
+}
+
+.copy-ic {
+  color: #17baef !important;
+  cursor: pointer !important;
+}
+
+/* Add to Calendar */
 .atc-link {
   display: block;
   line-height: 100%;

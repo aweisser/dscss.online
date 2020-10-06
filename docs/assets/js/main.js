@@ -4,7 +4,6 @@ jQuery(document).ready(function($) {
     $('body').scrollspy({ target: '#header', offset: 400});
     
     /* ======= Fixed header when scrolled ======= */
-    
     $(window).bind('scroll', function() {
          if ($(window).scrollTop() > 50) {
              $('#header').addClass('navbar-fixed-top');
@@ -28,6 +27,5 @@ jQuery(document).ready(function($) {
 			$('.navbar-collapse').removeClass('show');
 		}
 		
-	});
-
+    });
 });
