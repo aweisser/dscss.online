@@ -170,16 +170,7 @@ body:after{
 
 .dropdown-share {
   padding-left: 10px;
-  min-width: 12em;
-}
-
-.mr-25 {
-  margin-right: .75rem !important;
-}
-
-.copy-ic {
-  color: #17baef !important;
-  cursor: pointer !important;
+  min-width: 10em;
 }
 
 /* Add to Calendar */

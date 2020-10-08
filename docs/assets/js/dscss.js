@@ -46,28 +46,9 @@ function shareButton(id, dscssn) {
             <a class="email-ic mr-3" role="button" href="mailto:?&subject=${shareText}&body=${shareText} ${detailPageLink}" title="Email"><i class="far fa-lg fa-envelope"></i></a>
 
             <!--WhatsApp-->
-            <a class="whatsapp-ic mr-25" role="button" href="whatsapp://send?text=${shareText} ${detailPageLink}" title="WhatsApp"><i class="fab fa-lg fa-whatsapp"></i></a>
-
-            <!--Copy to clipboard-->
-            <input type="text" style="display:none" value="${detailPageLink}" id="clipboard_${id}">
-            <a class="copy-ic" role="button" onclick="copyToClipboard('clipboard_${id}')" title="Copy to clipboard"><i class="far fa-lg fa-copy"></i></a>
+            <a class="whatsapp-ic" role="button" href="whatsapp://send?text=${shareText} ${detailPageLink}" title="WhatsApp"><i class="fab fa-lg fa-whatsapp"></i></a>
         </div>
     </div>`;
-}
-
-function copyToClipboard(id) {
-    /* Get the text field */
-    var copyText = document.getElementById(id);
-
-    /* Select the text field */
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-    /* Copy the text inside the text field */
-    document.execCommand("copy");
-
-    /* Alert the copied text */
-    alert("Copied " + copyText.value);
 }
 
 function discussionLink(dscssn) {
