@@ -40,10 +40,10 @@ function shareButton(id, dscssn) {
             <a class="fb-ic mr-3" role="button" href="https://www.facebook.com/sharer/sharer.php?u=${detailPageLink}" target="_blank" title="Facebook"><i class="fab fa-lg fa-facebook-f"></i></a>
 
             <!--Twitter-->
-            <a class="tw-ic mr-3" role="button" href="https://twitter.com/home?status=${detailPageLink} ${shareText}" target="_blank" title="Twitter"><i class="fab fa-lg fa-twitter"></i></a>
+            <a class="tw-ic mr-3" role="button" href="https://twitter.com/intent/tweet?url=${detailPageLink}&text=${shareText}" target="_blank" title="Twitter"><i class="fab fa-lg fa-twitter"></i></a>
 
             <!--Email-->
-            <a class="email-ic mr-3" role="button" href="mailto:?&subject=${shareText}&body=${shareText} ${detailPageLink}" title="Email"><i class="far fa-lg fa-envelope"></i></a>
+            <a class="email-ic mr-3" role="button" href="mailto:?subject=${shareText}&body=${shareText} ${detailPageLink}" title="Email"><i class="far fa-lg fa-envelope"></i></a>
 
             <!--WhatsApp-->
             <a class="whatsapp-ic" role="button" href="whatsapp://send?text=${shareText} ${detailPageLink}" title="WhatsApp"><i class="fab fa-lg fa-whatsapp"></i></a>
